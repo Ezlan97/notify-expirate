@@ -47,13 +47,14 @@
 
             .title {
                 font-size: 84px;
+                font-weight: bold;
             }
 
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
+                font-size: 18px;
+                font-weight: 700;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -64,7 +65,7 @@
             }
         </style>
     </head>
-    <body>
+    <body background="image/bg.jpg">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
