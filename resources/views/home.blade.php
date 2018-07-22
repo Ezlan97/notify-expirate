@@ -35,7 +35,7 @@
                     <hr>
                     <h6>New</h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '>', date("Y-m-d") and 'expired', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('reminder', '>', date("Y-m-d") and 'expired', '>', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
                     </div>
                     <h6>Incoming</h6>
                     <div class="progress">
@@ -80,7 +80,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($reminders as $reminder)
+                                        @foreach($reminders->where('reminder', '>', date("Y-m-d") and 'expired', '>', date("Y-m-d")) as $reminder)
                                         <tr>
                                             <th>{{ $reminder->title }}</th>
                                             <td>{{ $reminder->desc }}</td>
@@ -105,7 +105,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($reminders as $reminder)
+                                        @foreach($reminders->where('reminder', '<', date("Y-m-d")) as $reminder)
                                         <tr>
                                             <th>{{ $reminder->title }}</th>
                                             <td>{{ $reminder->desc }}</td>
@@ -130,7 +130,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($reminders as $reminder)
+                                        @foreach($reminders->where('expired', '>', date("Y-m-d")) as $reminder)
                                         <tr>
                                             <th>{{ $reminder->title }}</th>
                                             <td>{{ $reminder->desc }}</td>
