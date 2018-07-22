@@ -17,4 +17,6 @@ Auth::routes();
 
 Route::post('home/update-profile', 'UserController@updateProfile')->name('updateProfile');
 
+Route::post('home/create-reminder', 'ReminderController@createReminder')->name('createReminder');
+
 Route::get('/home', 'HomeController@index')->name('home');

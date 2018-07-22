@@ -5,7 +5,11 @@
         <div class="col-lg-3">
             <div class="card border-primary mb-3" style="max-width: 18rem;">
                 <div class="card-body">
+                    @if(Auth::user()->avatar == null)
+                    <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                    @else
                     <img class="rounded-circle img-fluid d-block mx-auto" src="{{ asset( Auth::user()->avatar ) }}" alt="">
+                    @endif
                     <br>                   
                     <hr>
                     <br>
@@ -31,41 +35,155 @@
                     <hr>
                     <h6>New</h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%"></div>
                     </div>
                     <h6>Incoming</h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '<', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '<', date("Y-m-d"))->count() / $reminders->count() * 100 }}%"></div>
                     </div>
                     <h6>Expired</h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="{{ $reminders->where('expired', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('expired', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%"></div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="col-lg-9">
-            <div class="card text-center">
+            <div class="card text-center border-primary">
                 <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
+                    <ul class="nav nav-tabs nav-pills" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">New</a>
+                            <a class="nav-link active" id="userProfile-tab" data-toggle="tab" href="#userProfile" role="tab" aria-controls="userProfile" aria-selected="true">New</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Incoming</a>
+                            <a class="nav-link" id="manageMember-tab" data-toggle="tab" href="#manageMember" role="tab" aria-controls="manageMember" aria-selected="false">Incoming</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Expired</a>
+                            <a class="nav-link" id="manageFees-tab" data-toggle="tab" href="#manageFees" role="tab" aria-controls="manageFees" aria-selected="false">Expired</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="newReminder-tab" data-toggle="tab" href="#newReminder" role="tab" aria-controls="newReminder" aria-selected="false">Add New Reminder</a>
                         </li>
                     </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="userProfile" role="tabpanel" aria-labelledby="userProfile-tab">
+                            <h4 class="sm-padding text-success">New Reminder</h4>
+                            <table class="table table-hover table-reponsive">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Reminder Date</th>
+                                        <th scope="col">Expired Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($reminders as $reminder)
+                                    <tr>
+                                        <th>{{ $reminder->title }}</th>
+                                        <td>{{ $reminder->desc }}</td>
+                                        <td>{{ $reminder->reminder }}</td>
+                                        <td>{{ $reminder->expired }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade show" id="manageMember" role="tabpanel" aria-labelledby="manageMember-tab">
+                            <h4 class="sm-padding text-warning">Incoming Reminder</h4>
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Reminder Date</th>
+                                        <th scope="col">Expired Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($reminders as $reminder)
+                                    <tr>
+                                        <th>{{ $reminder->title }}</th>
+                                        <td>{{ $reminder->desc }}</td>
+                                        <td>{{ $reminder->reminder }}</td>
+                                        <td>{{ $reminder->expired }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>    
+                        </div>
+                        <div class="tab-pane fade" id="manageFees" role="tabpanel" aria-labelledby="ManageIncome-tab">
+                            <h4 class="sm-padding text-danger">Expired Reminder</h4>
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Reminder Date</th>
+                                        <th scope="col">Expired Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($reminders as $reminder)
+                                    <tr>
+                                        <th>{{ $reminder->title }}</th>
+                                        <td>{{ $reminder->desc }}</td>
+                                        <td>{{ $reminder->reminder }}</td>
+                                        <td>{{ $reminder->expired }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>    
+                        </div>
+                        <div class="tab-pane fade" id="newReminder" role="tabpanel" aria-labelledby="newReminder-tab">
+                            <h4 class="sm-padding text-primary">Create New Reminder</h4>
+                            <form class="form" method="POST" action="{{ route('createReminder') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group row">
+                                    <label class="label col-md-4 col-form-label text-md-right" for="title">Title</label>
+                                    <input class="input col-md-6 form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" type="text" name="title" autofocus required>
+                                    @if ($errors->has('title'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                                <div class="form-group row">
+                                    <label class="label col-md-4 col-form-label text-md-right" for="desc">Description</label>
+                                    <textarea class="input col-md-6 form-control {{ $errors->has('desc') ? ' is-invalid' : '' }}" type="text" name="desc" required></textarea>
+                                    @if ($errors->has('desc'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('desc') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                                <div class="form-group row">
+                                    <label class="label col-md-4 col-form-label text-md-right" for="reminder">Reminder Date</label>
+                                    <input class="input col-md-6 form-control {{ $errors->has('reminder') ? ' is-invalid' : '' }}" type="date" name="reminder" required>
+                                    @if ($errors->has('reminder'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('reminder') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                                <div class="form-group row">   
+                                    <label class="label col-md-4 col-form-label text-md-right" for="expired">Expired</label>
+                                    <input class="input col-md-6 form-control {{ $errors->has('expired') ? ' is-invalid' : '' }}" type="date" name="expired" required>
+                                    @if ($errors->has('expired'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('expired') }}</strong>
+                                    </span>
+                                    @endif                         
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-primary" type="submit">Create</button>
+                                </div>
+                            </form>
+                        </textarea>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+            </div>            
         </div>
     </div>
 </div>

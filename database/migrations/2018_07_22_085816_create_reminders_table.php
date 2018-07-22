@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotifiesTable extends Migration
+class CreateRemindersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateNotifiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifies', function (Blueprint $table) {
+        Schema::create('reminders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('user_id');
+            $table->string('title');
+            $table->string('desc');
+            $table->date('reminder');
+            $table->date('expired');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateNotifiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifies');
+        Schema::dropIfExists('reminders');
     }
 }

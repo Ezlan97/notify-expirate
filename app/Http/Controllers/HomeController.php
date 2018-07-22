@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Reminder;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $reminders = Reminder::where('user_id', Auth::user()->id)->get()->sortByDesc('created_at');
+
+        return view('home', compact('reminders'));
     }
 }

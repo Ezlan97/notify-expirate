@@ -3,6 +3,10 @@
         padding-top: 50px;
         padding-bottom:50px;
     }
+    .sm-padding {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
     @font-face {
         font-family: 'typicons';
         src: url("path/to/typicons.eot");
