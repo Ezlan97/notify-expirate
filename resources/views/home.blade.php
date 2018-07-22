@@ -35,15 +35,15 @@
                     <hr>
                     <h6>New</h6>
                     <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%"></div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
                     </div>
                     <h6>Incoming</h6>
                     <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '<', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '<', date("Y-m-d"))->count() / $reminders->count() * 100 }}%"></div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '<', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '<', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('reminder', '<', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
                     </div>
                     <h6>Expired</h6>
                     <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="{{ $reminders->where('expired', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('expired', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%"></div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('expired', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('expired', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('expired', '>', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
                     </div>
                 </div>
             </div>
@@ -69,72 +69,78 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="userProfile" role="tabpanel" aria-labelledby="userProfile-tab">
                             <h4 class="sm-padding text-success">New Reminder</h4>
-                            <table class="table table-hover table-reponsive">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Reminder Date</th>
-                                        <th scope="col">Expired Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($reminders as $reminder)
-                                    <tr>
-                                        <th>{{ $reminder->title }}</th>
-                                        <td>{{ $reminder->desc }}</td>
-                                        <td>{{ $reminder->reminder }}</td>
-                                        <td>{{ $reminder->expired }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Reminder Date</th>
+                                            <th scope="col">Expired Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($reminders as $reminder)
+                                        <tr>
+                                            <th>{{ $reminder->title }}</th>
+                                            <td>{{ $reminder->desc }}</td>
+                                            <td>{{ $reminder->reminder }}</td>
+                                            <td>{{ $reminder->expired }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="tab-pane fade show" id="manageMember" role="tabpanel" aria-labelledby="manageMember-tab">
                             <h4 class="sm-padding text-warning">Incoming Reminder</h4>
-                            <table class="table table-hover">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Reminder Date</th>
-                                        <th scope="col">Expired Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($reminders as $reminder)
-                                    <tr>
-                                        <th>{{ $reminder->title }}</th>
-                                        <td>{{ $reminder->desc }}</td>
-                                        <td>{{ $reminder->reminder }}</td>
-                                        <td>{{ $reminder->expired }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>    
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Reminder Date</th>
+                                            <th scope="col">Expired Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($reminders as $reminder)
+                                        <tr>
+                                            <th>{{ $reminder->title }}</th>
+                                            <td>{{ $reminder->desc }}</td>
+                                            <td>{{ $reminder->reminder }}</td>
+                                            <td>{{ $reminder->expired }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="manageFees" role="tabpanel" aria-labelledby="ManageIncome-tab">
                             <h4 class="sm-padding text-danger">Expired Reminder</h4>
-                            <table class="table table-hover">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Reminder Date</th>
-                                        <th scope="col">Expired Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($reminders as $reminder)
-                                    <tr>
-                                        <th>{{ $reminder->title }}</th>
-                                        <td>{{ $reminder->desc }}</td>
-                                        <td>{{ $reminder->reminder }}</td>
-                                        <td>{{ $reminder->expired }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>    
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Reminder Date</th>
+                                            <th scope="col">Expired Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($reminders as $reminder)
+                                        <tr>
+                                            <th>{{ $reminder->title }}</th>
+                                            <td>{{ $reminder->desc }}</td>
+                                            <td>{{ $reminder->reminder }}</td>
+                                            <td>{{ $reminder->expired }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div> 
                         </div>
                         <div class="tab-pane fade" id="newReminder" role="tabpanel" aria-labelledby="newReminder-tab">
                             <h4 class="sm-padding text-primary">Create New Reminder</h4>
