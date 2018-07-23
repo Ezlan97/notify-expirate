@@ -85,7 +85,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($reminders->where('reminder', '>', date("Y-m-d") and 'expired', '>', date("Y-m-d")) as $reminder)
+                                        @foreach($news as $reminder)
                                         <tr>
                                             <th>{{ $reminder->title }}</th>
                                             <td>{{ $reminder->desc }}</td>
@@ -122,7 +122,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($reminders->where('reminder', '<', date("Y-m-d")) as $reminder)
+                                        @foreach($incomings as $reminder)
                                         <tr>
                                             <th>{{ $reminder->title }}</th>
                                             <td>{{ $reminder->desc }}</td>
@@ -159,7 +159,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($reminders->where('expired', '>', date("Y-m-d")) as $reminder)
+                                        @foreach($expireds as $reminder)
                                         <tr>
                                             <th>{{ $reminder->title }}</th>
                                             <td>{{ $reminder->desc }}</td>

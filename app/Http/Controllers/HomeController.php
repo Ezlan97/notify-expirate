@@ -26,12 +26,16 @@ class HomeController extends Controller
     public function index()
     {
         $reminders = Reminder::where('user_id', Auth::user()->id)->get()->sortByDesc('created_at');
+        
+        $news = $reminders->where('reminder', '>', date("Y-m-d"))->where('expired', '>', date("Y-m-d"));
+        $incomings = $reminders->where('reminder', '<', date("Y-m-d"))->where('expired', '>', date("Y-m-d"));
+        $expireds = $reminders->where('reminder', '<', date("Y-m-d"))->where('expired', '<', date("Y-m-d"));
 
         $all = $reminders->count();
         $new = $reminders->where('reminder', '>', date("Y-m-d"))->count();
         $incoming = $reminders->where('reminder', '<', date("Y-m-d"))->count();
         $expired = $reminders->where('expired', '>', date("Y-m-d"), 'reminder', '<', date("Y-m-d"))->count();
 
-        return view('home', compact('reminders', 'new', 'incoming', 'expired', 'all'));
+        return view('home', compact('reminders', 'new', 'incoming', 'expired', 'all', 'news', 'incomings', 'expireds'));
     }
 }
