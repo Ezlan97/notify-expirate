@@ -27,6 +27,11 @@ class HomeController extends Controller
     {
         $reminders = Reminder::where('user_id', Auth::user()->id)->get()->sortByDesc('created_at');
 
-        return view('home', compact('reminders'));
+        $all = $reminders->count();
+        $new = $reminders->where('reminder', '>', date("Y-m-d"))->count();
+        $incoming = $reminders->where('reminder', '<', date("Y-m-d"))->count();
+        $expired = $reminders->where('expired', '>', date("Y-m-d"), 'reminder', '<', date("Y-m-d"))->count();
+
+        return view('home', compact('reminders', 'new', 'incoming', 'expired', 'all'));
     }
 }

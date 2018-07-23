@@ -38,15 +38,15 @@
                     <hr>
                     <h6>New</h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '>', date("Y-m-d") and 'expired', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('reminder', '>', date("Y-m-d") and 'expired', '>', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success text-dark text-center" role="progressbar" aria-valuenow="{{ $new }}" aria-valuemin="0" aria-valuemax="{{ $all }}" style="width: @if($all == 0) 0 @else{{ $new / $all * 100 }}% @endif">{{ $new }}/{{ $all }}</div>
                     </div>
                     <h6>Incoming</h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('reminder', '<', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('reminder', '<', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('reminder', '<', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning text-dark text-center" role="progressbar" aria-valuenow="{{ $incoming }}" aria-valuemin="0" aria-valuemax="{{ $all }}" style="width:@if($all == 0) 0 @else{{ $incoming / $all * 100 }}% @endif">{{ $incoming }}/{{ $all }}</div>
                     </div>
                     <h6>Expired</h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger text-dark text-center" role="progressbar" aria-valuenow="{{ $reminders->where('expired', '>', date("Y-m-d"))->count() }}" aria-valuemin="0" aria-valuemax="{{ $reminders->count() }}" style="width: {{ $reminders->where('expired', '>', date("Y-m-d"))->count() / $reminders->count() * 100 }}%">{{ $reminders->where('expired', '>', date("Y-m-d"))->count() }}/{{ $reminders->count() }}</div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger text-dark text-center" role="progressbar" aria-valuenow="{{ $expired }}" aria-valuemin="0" aria-valuemax="{{ $all }}" style="width: @if($all == 0) 0 @else{{ $expired / $all * 100 }}% @endif">{{ $expired }}/{{ $all }}</div>
                     </div>
                 </div>
             </div>
