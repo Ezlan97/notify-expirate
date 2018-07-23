@@ -32,9 +32,9 @@ class HomeController extends Controller
         $expireds = $reminders->where('reminder', '<', date("Y-m-d"))->where('expired', '<', date("Y-m-d"));
 
         $all = $reminders->count();
-        $new = $reminders->where('reminder', '>', date("Y-m-d"))->count();
-        $incoming = $reminders->where('reminder', '<', date("Y-m-d"))->count();
-        $expired = $reminders->where('expired', '>', date("Y-m-d"), 'reminder', '<', date("Y-m-d"))->count();
+        $new = $reminders->where('reminder', '>', date("Y-m-d"))->where('expired', '>', date("Y-m-d"))->count();
+        $incoming = $reminders->where('reminder', '<', date("Y-m-d"))->where('expired', '>', date("Y-m-d"))->count();
+        $expired = $reminders->where('reminder', '<', date("Y-m-d"))->where('expired', '<', date("Y-m-d"))->count();
 
         return view('home', compact('reminders', 'new', 'incoming', 'expired', 'all', 'news', 'incomings', 'expireds'));
     }
