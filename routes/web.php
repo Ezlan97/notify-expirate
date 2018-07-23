@@ -19,4 +19,8 @@ Route::post('home/update-profile', 'UserController@updateProfile')->name('update
 
 Route::post('home/create-reminder', 'ReminderController@createReminder')->name('createReminder');
 
+Route::post('home/update-reminder/{id}', 'ReminderController@updateReminder')->name('updateReminder');
+
+Route::post('home/delete-reminder/{id}', 'ReminderController@deleteReminder')->name('deleteReminder');
+
 Route::get('/home', 'HomeController@index')->name('home');

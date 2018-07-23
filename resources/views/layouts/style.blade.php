@@ -17,7 +17,20 @@
         font-weight: normal;
         font-style: normal;
     }
+    .font-1 {
+        font-size: 22px;
+    }
+    .icon-1 {
+        font-size: 30px;
+    }
     .icon-2 {
         font-size: 100px;
+    }
+    .bg {
+        background-color: white;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
     }
 </style>

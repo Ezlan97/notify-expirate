@@ -1,5 +1,5 @@
-@extends('layouts.master') @section('title','Welcome') @section('content')
+@extends('layouts.master') @section('title','Notify Me') @section('content')
 
-        
+
 
 @endsection

@@ -1,6 +1,9 @@
 @extends('layouts.master') @section('title','Home') @section('content')
 
 <div class="container padding">
+    <div class="text-center sm-padding text-primary">
+        <h3>Welcome {{ Auth::user()->name }}!</h3>
+    </div>
     <div class="row">
         <div class="col-lg-3">
             <div class="card border-primary mb-3" style="max-width: 18rem;">
@@ -23,7 +26,7 @@
                     </div>
                     <br>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateProfile">
                             Update Profile
                         </button>
                     </div>
@@ -77,6 +80,8 @@
                                             <th scope="col">Description</th>
                                             <th scope="col">Reminder Date</th>
                                             <th scope="col">Expired Date</th>
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,6 +91,16 @@
                                             <td>{{ $reminder->desc }}</td>
                                             <td>{{ $reminder->reminder }}</td>
                                             <td>{{ $reminder->expired }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateReminder{{ $reminder->id }}">
+                                                    <span class="typcn typcn-edit"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteReminder{{ $reminder->id }}">
+                                                    <span class="typcn typcn-trash"></span>
+                                                </button>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -102,6 +117,8 @@
                                             <th scope="col">Description</th>
                                             <th scope="col">Reminder Date</th>
                                             <th scope="col">Expired Date</th>
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -111,6 +128,16 @@
                                             <td>{{ $reminder->desc }}</td>
                                             <td>{{ $reminder->reminder }}</td>
                                             <td>{{ $reminder->expired }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateReminder{{ $reminder->id }}">
+                                                    <span class="typcn typcn-edit"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteReminder{{ $reminder->id }}">
+                                                    <span class="typcn typcn-trash"></span>
+                                                </button>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -127,6 +154,8 @@
                                             <th scope="col">Description</th>
                                             <th scope="col">Reminder Date</th>
                                             <th scope="col">Expired Date</th>
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -136,6 +165,16 @@
                                             <td>{{ $reminder->desc }}</td>
                                             <td>{{ $reminder->reminder }}</td>
                                             <td>{{ $reminder->expired }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateReminder{{ $reminder->id }}">
+                                                    <span class="typcn typcn-edit"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteReminder{{ $reminder->id }}">
+                                                    <span class="typcn typcn-trash"></span>
+                                                </button>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -197,7 +236,7 @@
 {{-- modal --}}
 
 {{-- update profile  --}}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-primary">
             <div class="modal-header">
@@ -252,5 +291,92 @@
         </div>
     </div>
 </div>
+
+{{-- update reminder --}}
+@foreach($reminders as $reminder)
+<div class="modal fade" id="updateReminder{{ $reminder->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="POST" action="{{ route('updateReminder', $reminder->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group row">
+                        <label class="label col-md-4 col-form-label text-md-right" for="title">Title</label>
+                        <input class="input col-md-6 form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" type="text" name="title" value="{{ $reminder->title }}" autofocus required>
+                        @if ($errors->has('title'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('title') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group row">
+                        <label class="label col-md-4 col-form-label text-md-right" for="desc">Description</label>
+                        <textarea class="input col-md-6 form-control {{ $errors->has('desc') ? ' is-invalid' : '' }}" type="text" name="desc" required>{{ $reminder->desc }}</textarea>
+                        @if ($errors->has('desc'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('desc') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group row">
+                        <label class="label col-md-4 col-form-label text-md-right" for="reminder">Reminder Date</label>
+                        <input class="input col-md-6 form-control {{ $errors->has('reminder') ? ' is-invalid' : '' }}" type="date" name="reminder" value="{{ $reminder->reminder }}" required>
+                        @if ($errors->has('reminder'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('reminder') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group row">   
+                        <label class="label col-md-4 col-form-label text-md-right" for="expired">Expired</label>
+                        <input class="input col-md-6 form-control {{ $errors->has('expired') ? ' is-invalid' : '' }}" type="date" name="expired" value="{{ $reminder->expired }}" required>
+                        @if ($errors->has('expired'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('expired') }}</strong>
+                        </span>
+                        @endif                         
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>
+@endforeach
+
+{{-- delete modal --}}
+@foreach($reminders as $reminder)
+<div class="modal fade" id="deleteReminder{{ $reminder->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Reminder</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="POST" action="{{ route('deleteReminder', $reminder->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    <h6 class="text-center">Are you sure you want to delete this reminder?</h6>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+</div>
+@endforeach
+
 
 @endsection

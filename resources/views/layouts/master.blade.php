@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 @include('layouts.head')
 @include('layouts.style')
-<body>
+<body class="bg">
 	@include('layouts.navbar')	
 	
 	<div class="container">
