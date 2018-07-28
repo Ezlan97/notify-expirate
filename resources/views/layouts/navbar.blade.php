@@ -1,31 +1,28 @@
-<div class="container">
-    <nav class="navbar navbar-expand-md navbar-light">
-        <div class="mx-auto order-0">
-            <a class="navbar-brand" href="{{ route('welcome') }}">
-                <span class="typcn typcn-thumbs-ok text-primary icon-1">done</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{{ route('welcome') }}">Notify Me</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-primary font-1" href="{{ route('login') }}">About</a>
+                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-primary font-1" href="{{ route('register') }}">Contact Us</a>
+                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
                 </li>
                 @if(Auth::guest())
                 <li class="nav-item">
-                    <a class="nav-link text-primary font-1" href="{{ route('login') }}">Login</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('login') }}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-primary font-1" href="{{ route('register') }}">Register</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('register') }}">Register</a>
                 </li>
                 @else
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary font-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-black font-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
                     
@@ -42,8 +39,9 @@
                     </form>
                 </div>
             </li>
-            @endif
-        </ul>
+                @endif
+            </ul>
+        </div>
     </div>
 </nav>
 </div>

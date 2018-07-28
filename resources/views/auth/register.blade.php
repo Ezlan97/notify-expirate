@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6s">
             <div class="padding">
-                <div class="card border-primary">                    
+                <div class="card border-warning">                    
                     <div class="card-body">
                         <h3>Register</h3>
                         <hr>
@@ -66,7 +66,7 @@
                             
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-warning">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
