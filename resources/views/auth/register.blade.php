@@ -1,5 +1,16 @@
 @extends('layouts.master') @section('title','Register') @section('content')
 
+<!-- Header -->
+<header class="masthead">
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Welcome To Notify Me!</div>
+            <div class="intro-heading text-uppercase">Your personal reminder!</div>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ route('register') }}">Register</a>
+        </div>
+    </div>
+</header>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6s">

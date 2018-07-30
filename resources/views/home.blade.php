@@ -1,12 +1,18 @@
 @extends('layouts.master') @section('title','Home') @section('content')
 
-<div class="container padding">
-    <div class="text-center sm-padding text-primary">
-        <h3>Welcome {{ Auth::user()->name }}!</h3>
+<!-- Header -->
+<header class="masthead">
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Welcome {{ Auth::user()->name }}</div>            
+        </div>
     </div>
+</header>
+
+<div class="container padding">
     <div class="row">
         <div class="col-lg-3">
-            <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card border-warning mb-3" style="max-width: 18rem;">
                 <div class="card-body">
                     @if(Auth::user()->avatar == null)
                     <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
@@ -32,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card mb-3 border-primary">
+            <div class="card mb-3 border-warning">
                 <div class="card-body">
                     <h5 class="card-title">Status</h5>
                     <hr>
@@ -53,7 +59,7 @@
         </div>
         
         <div class="col-lg-9">
-            <div class="card text-center border-primary">
+            <div class="card text-center border-warning">
                 <div class="card-header">
                     <ul class="nav nav-tabs nav-pills" id="myTab" role="tablist">
                         <li class="nav-item">
