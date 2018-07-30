@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reminder;
+use Carbon\Carbon;
 use Auth;
+use Mail;
 
 class ReminderController extends Controller
 {
