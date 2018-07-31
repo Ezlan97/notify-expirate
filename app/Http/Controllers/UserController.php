@@ -22,7 +22,7 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $avatar = Image::make($avatar)->save('image/'.$request->name.'.jpg', 60);
-            $user->avatar = 'storage/avatars/'.$request->name.'.jpg';
+            $user->avatar = 'image/'.$request->name.'.jpg';
         }
         $user->save();
 
