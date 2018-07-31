@@ -1,4 +1,4 @@
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="https://blackrockdigital.github.io/startbootstrap-agency/js/jqBootstrapValidation.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-agency/js/agency.min.js"></script>
 {{-- session fade out --}}
 <script type="text/javascript">
