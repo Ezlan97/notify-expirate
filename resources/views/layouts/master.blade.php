@@ -6,8 +6,8 @@
 	@include('layouts.navbar')	
 	
 	<div class="container">
-		@include('layouts.notify')
 		@yield('content')
+		@include('layouts.notify')
 	</div>
 	
 	@include('layouts.footer')

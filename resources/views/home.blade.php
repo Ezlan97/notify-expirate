@@ -63,16 +63,16 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs nav-pills" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="userProfile-tab" data-toggle="tab" href="#userProfile" role="tab" aria-controls="userProfile" aria-selected="true">New</a>
+                            <a class="nav-link active" id="userProfile-tab" data-toggle="tab" href="#userProfile" role="tab" aria-controls="userProfile" aria-selected="true" style="color:black;" >New</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="manageMember-tab" data-toggle="tab" href="#manageMember" role="tab" aria-controls="manageMember" aria-selected="false">Incoming</a>
+                            <a class="nav-link" id="manageMember-tab" data-toggle="tab" href="#manageMember" role="tab" aria-controls="manageMember" aria-selected="false" style="color:black;" >Incoming</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="manageFees-tab" data-toggle="tab" href="#manageFees" role="tab" aria-controls="manageFees" aria-selected="false">Expired</a>
+                            <a class="nav-link" id="manageFees-tab" data-toggle="tab" href="#manageFees" role="tab" aria-controls="manageFees" aria-selected="false" style="color:black;" >Expired</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="newReminder-tab" data-toggle="tab" href="#newReminder" role="tab" aria-controls="newReminder" aria-selected="false">Add New Reminder</a>
+                            <a class="nav-link" id="newReminder-tab" data-toggle="tab" href="#newReminder" role="tab" aria-controls="newReminder" aria-selected="false" style="color:black;" >Add New Reminder</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -245,7 +245,7 @@
 <div class="modal fade" id="updateProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-primary">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #4943FF;">
                 <h5 id="exampleModalLabel">Profile</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -303,8 +303,8 @@
 <div class="modal fade" id="updateReminder{{ $reminder->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <div class="modal-header" style="background-color: #4943FF" >
+                <h5 class="modal-title" id="exampleModalLabel">Update Your Reminder</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
