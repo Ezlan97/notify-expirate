@@ -8,7 +8,7 @@
         </div>
     </div>
 </header>
-
+@include('layouts.notify')
 <div class="container padding">
     <div class="row">
         <div class="col-lg-3">
