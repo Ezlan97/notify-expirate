@@ -5,7 +5,7 @@
 <body id="page-top">
 	@include('layouts.navbar')	
 	
-	<div class="container">
+	<div>
 		@yield('content')		
 	</div>
 	
