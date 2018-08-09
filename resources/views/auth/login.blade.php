@@ -1,4 +1,4 @@
-@extends('layouts.master') @section('title','Register') @section('content')
+@extends('layouts.master') @section('title','Login') @section('content')
 
 <!-- Header -->
 <header class="masthead">
