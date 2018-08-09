@@ -1,7 +1,7 @@
 @extends('layouts.master') @section('title','Notify Me') @section('content')
 
 <!-- Header -->
-<header class="masthead" style="height:600px;">
+<header class="masthead">
     <div class="container">
         <div class="intro-text">
             <div class="intro-lead-in">Welcome To Notify Me!</div>
