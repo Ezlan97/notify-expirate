@@ -1,7 +1,7 @@
 @extends('layouts.master') @section('title','Home') @section('content')
 
 <!-- Header -->
-<header class="masthead" style="height: 600px;">
+<header class="masthead" style="height: 400px;">
     <div class="container">
         <div class="intro-text">
             <div class="intro-lead-in">Welcome {{ Auth::user()->name }}</div>            
