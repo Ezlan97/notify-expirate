@@ -9,10 +9,10 @@
             <ul class="navbar-nav text-uppercase ml-auto">
                 @if(Auth::guest())
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ route('login') }}">Login</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('login') }}" style="font-size:30px;">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{{ route('register') }}">Register</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('register') }}" style="font-size:30px;">Register</a>
                 </li>
                 @else
                 <li class="nav-item dropdown">
