@@ -19,6 +19,7 @@ class UserController extends Controller
         $user = User::find(Auth::user()->id);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->email = $request->secondEmail;
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $avatar = Image::make($avatar)->save('image/'.$request->name.'.jpg', 60);
