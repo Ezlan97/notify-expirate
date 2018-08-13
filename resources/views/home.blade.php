@@ -287,9 +287,9 @@
                             @endif
                         </div>
                     </div>
-
+                    
                     <div class="form-group row">
-                        <label for="secondEmail" class="col-md-4 col-form-label text-md-right">Second Email</label>
+                        <label for="secondEmail" class="col-md-4 col-form-label text-md-right">Second E-mail</label>
                         
                         <div class="col-md-6">
                             <input id="secondEmail" type="email" class="form-control{{ $errors->has('secondEmail') ? ' is-invalid' : '' }}" name="secondEmail" value="{{ Auth::user()->secondEmail }}">
