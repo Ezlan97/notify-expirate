@@ -30,10 +30,12 @@
                         <h6 class="col-md-4">Email  </h6>
                         <p class="col-md-6 card-text"> {{ Auth::user()->email }}</p>
                     </div>
+                    @if(Auth::user()->secondEmail != null)
                     <div class="form-group row">
-                        <h6 class="col-md-4">Email  </h6>
+                        <h6 class="col-md-4">Second Email  </h6>
                         <p class="col-md-6 card-text"> {{ Auth::user()->secondEmail }}</p>
                     </div>
+                    @endif
                     <br>
                     <div class="text-center">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateProfile">
