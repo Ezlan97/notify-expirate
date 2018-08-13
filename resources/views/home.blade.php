@@ -63,7 +63,7 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs nav-pills" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="userProfile-tab" data-toggle="tab" href="#userProfile" role="tab" aria-controls="userProfile" aria-selected="true" style="color:black;" >New</a>
+                            <a class="nav-link active" id="userProfile-tab" data-toggle="tab" href="#userProfile" role="tab" aria-controls="userProfile" aria-selected="true" style="color:black;" >Reminder</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="manageMember-tab" data-toggle="tab" href="#manageMember" role="tab" aria-controls="manageMember" aria-selected="false" style="color:black;" >Incoming</a>
@@ -283,7 +283,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="secondEmail" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                        <label for="secondEmail" class="col-md-4 col-form-label text-md-right">Second Email</label>
                         
                         <div class="col-md-6">
                             <input id="secondEmail" type="email" class="form-control{{ $errors->has('secondEmail') ? ' is-invalid' : '' }}" name="secondEmail" value="{{ Auth::user()->secondEmail }}">
