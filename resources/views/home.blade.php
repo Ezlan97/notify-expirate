@@ -32,7 +32,7 @@
                     </div>
                     @if(Auth::user()->secondEmail != null)
                     <div class="form-group row">
-                        <h6 class="col-md-4">Email 2  </h6>
+                        <h6 class="col-md-4">Email 2 </h6>
                         <p class="col-md-6 card-text"> {{ Auth::user()->secondEmail }}</p>
                     </div>
                     @endif
